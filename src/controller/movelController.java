@@ -7,8 +7,8 @@ import model.Movel;
 public class movelController {
 	public static void main(String[] args) {
 		
-		Movel movel_1 = new Movel("mesa", 100, 200, "res\\mesa.png", 100, 100, true);
-		Movel movel_2 = new Movel("mesa jantar", 100, 300, "res\\mesa.png", 100, 100, true);
+		Movel movel_1 = new Movel("mesa", 500, 150, "res\\mesa.png", 200, 100, true);
+		Movel movel_2 = new Movel("cama", 130, 40, "res\\cama.png", 100, 100, true);
 		
 		setMoveis(movel_1);
 		setMoveis(movel_2);

@@ -15,10 +15,10 @@ public class Personagem {
 	private boolean isVisivel;
 	
 	public Personagem() {
-		this.x = 300;
-		this.y = 300;
-		this.altura= 100;
-		this.largura = 100;
+		this.x = 50;
+		this.y = 50;
+		this.altura= 50;
+		this.largura = 50;
 		this.velocidade = 3;
 		this.isVisivel = true;
 	}
@@ -142,5 +142,12 @@ public class Personagem {
 	public void setLargura(int largura) {
 		this.largura = largura;
 	}
+
+	@Override
+	public String toString() {
+		return "Personagem [x=" + x + ", y=" + y + ", dx=" + dx + ", dy=" + dy + ", imagem=" + imagem + ", altura="
+				+ altura + ", largura=" + largura + ", velocidade=" + velocidade + ", isVisivel=" + isVisivel + "]\n";
+	}
+	
 	
 }

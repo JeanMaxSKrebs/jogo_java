@@ -36,7 +36,6 @@ public class Parede {
 		this.x = x;
 		this.y = y;
 		this.caminho = caminho;
-		this.imagem = imagem;
 		this.altura = altura;
 		this.largura = largura;
 		this.isVisivel = isVisivel;
@@ -59,8 +58,8 @@ public class Parede {
 			Image a = referencia.getImage();
 			parede.setImagem(a);
 			
-			parede.setAltura(a.getHeight(null));
-			parede.setLargura(a.getWidth(null));
+//			parede.setAltura(a.getHeight(null));
+//			parede.setLargura(a.getWidth(null));
 		}
 	}
 

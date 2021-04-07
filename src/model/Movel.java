@@ -58,11 +58,13 @@ public class Movel implements List<Movel> {
 
 		for (Movel movel : moveis) {
 			ImageIcon referencia = new ImageIcon(movel.getCaminho());
+			
 			Image a = referencia.getImage();
 			movel.setImagem(a);
+			System.out.println(a.getHeight(null));
 			
-			movel.setAltura(a.getHeight(null));
-			movel.setLargura(a.getWidth(null));
+//			movel.setAltura(a.getHeight(null));
+//			movel.setLargura(a.getWidth(null));
 		}
 	}
 

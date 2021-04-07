@@ -38,6 +38,7 @@ public class Fase extends JPanel implements ActionListener{
 		movelController.main(null);
 		paredeController.main(null);
 
+
 		parede = new Parede();
 		parede.load();
 		
@@ -46,7 +47,7 @@ public class Fase extends JPanel implements ActionListener{
 		
 		personagem = new Personagem();
 		personagem.load();
-		
+
 		addKeyListener(new TecladoAdapter());
 		
 		velocidade = new Timer(5, this);
@@ -62,13 +63,14 @@ public class Fase extends JPanel implements ActionListener{
 //		System.out.println(parede);
 
 		for (Parede p : parede.getParedes()) {
-			graficos.drawImage(p.getImagem(), p.getX(), p.getY(), this);
+			graficos.drawImage(p.getImagem(), p.getX(), p.getY(), p.getLargura(), p.getAltura(), this);
 		}
 		
 		for (Movel m : movel.getMoveis()) {
-			graficos.drawImage(m.getImagem(), m.getX(), m.getY(), this);
+			graficos.drawImage(m.getImagem(), m.getX(), m.getY(), m.getLargura(), m.getAltura(), this);
 		}
-		
+		System.out.println(personagem.toString());
+//		System.out.println(personagem.getY());
 		graficos.drawImage(personagem.getImagem(), personagem.getX(), personagem.getY(), this);
 		g.dispose();
 	}
