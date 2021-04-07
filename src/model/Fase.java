@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import controller.movelController;
+import controller.paredeController;
 
 @SuppressWarnings("serial")
 public class Fase extends JPanel implements ActionListener{
@@ -21,6 +22,7 @@ public class Fase extends JPanel implements ActionListener{
 	private Image fundo;
 	private Personagem personagem;
 	private Movel movel;
+	private Parede parede;
 	private Timer velocidade;
 	private int largura, altura;
 	
@@ -34,7 +36,11 @@ public class Fase extends JPanel implements ActionListener{
 		fundo = referencia.getImage();
 		
 		movelController.main(null);
+		paredeController.main(null);
 
+		parede = new Parede();
+		parede.load();
+		
 		movel = new Movel();
 		movel.load();
 		
@@ -48,14 +54,19 @@ public class Fase extends JPanel implements ActionListener{
 		
 	}
 	
+	@SuppressWarnings("static-access")
 	public void paint(Graphics g) {
 		Graphics2D graficos = (Graphics2D) g;
 		graficos.drawImage(fundo, 0, 0, null);
 
-//		System.out.println(movel);
+//		System.out.println(parede);
 
+		for (Parede p : parede.getParedes()) {
+			graficos.drawImage(p.getImagem(), p.getX(), p.getY(), this);
+		}
+		
 		for (Movel m : movel.getMoveis()) {
-		graficos.drawImage(m.getImagem(), m.getX(), m.getY(), this);
+			graficos.drawImage(m.getImagem(), m.getX(), m.getY(), this);
 		}
 		
 		graficos.drawImage(personagem.getImagem(), personagem.getX(), personagem.getY(), this);
@@ -68,8 +79,12 @@ public class Fase extends JPanel implements ActionListener{
 		repaint();
 	}
 	
+	@SuppressWarnings("static-access")
 	public void checarColisoes(){	
 		Rectangle formaPersonagem = personagem.getBounds();
+		Rectangle formaMovel;
+		Rectangle formaParede;
+
 		
 		if(formaPersonagem.y<0) {
 			personagem.setY(0);
@@ -83,12 +98,32 @@ public class Fase extends JPanel implements ActionListener{
 		if((formaPersonagem.y+formaPersonagem.height)>altura) {
 			personagem.setY(altura-formaPersonagem.height);
 		}
-		
+		/* colisão com moveis*/
+		int qtdMoveis = movel.getMoveis().size();
+		for(int i=0; i < qtdMoveis; i++) {
+			Movel tempMovel = movel.getMoveis().get(i);
+			formaMovel = tempMovel.getBounds();
+
+			if(formaPersonagem.intersects(formaMovel)) {
+				personagem.setX(personagem.getX()-personagem.getDx());
+				personagem.setY(personagem.getY()-personagem.getDy());
+			}
+		}
+		/* colisão com paredes*/
+		int qtdParedes = parede.getParedes().size();
+		for(int i=0; i < qtdParedes; i++) {
+			Parede tempParede = parede.getParedes().get(i);
+			formaParede = tempParede.getBounds();
+
+			if(formaPersonagem.intersects(formaParede)) {
+				personagem.setX(personagem.getX()-personagem.getDx());
+				personagem.setY(personagem.getY()-personagem.getDy());
+			}
+		}
 		 
 		
 		
 //		Rectangle formaTela;
-//		Rectangle formaInimigo;
 	}
 
 	

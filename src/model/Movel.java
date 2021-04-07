@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -65,6 +66,11 @@ public class Movel implements List<Movel> {
 		}
 	}
 
+	public Rectangle getBounds() {
+		
+		return new Rectangle(x, y, largura, altura);
+	}
+	
 	public String getNome() {
 		return nome;
 	}

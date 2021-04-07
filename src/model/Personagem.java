@@ -15,9 +15,9 @@ public class Personagem {
 	private boolean isVisivel;
 	
 	public Personagem() {
-		this.x = 0;
-		this.y = 0;
-		this.altura= 135;
+		this.x = 300;
+		this.y = 300;
+		this.altura= 100;
 		this.largura = 100;
 		this.velocidade = 3;
 		this.isVisivel = true;
